@@ -10,6 +10,9 @@ A simple tutorial for getting started with Spark on EMR. This can also be used a
 
 ## Building
 
+
+## TO-DO
+
 - Get started with Spark Dev Environment
 - Get started with Spark on EMR
 - Build a spark program
@@ -19,9 +22,12 @@ A simple tutorial for getting started with Spark on EMR. This can also be used a
 - Tutorial on using Parquet and Avro
 - Using Parquet with SparkSQL
 
+## Resources
+
+- [Spark Scala Docs] (http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.package)
 
 ```
 aws emr create-cluster --name abond-spark --ami-version 3.3.1 --instance-type m3.xlarge --instance-count 1 \
 --ec2-attributes KeyName=abond-kp2 \
---bootstrap-actions Path=s3://support.elasticmapreduce/spark/install-spark -v 1.2
+--bootstrap-actions Path=s3://support.elasticmapreduce/spark/install-spark -v 1.2 -g
 ```

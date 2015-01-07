@@ -16,8 +16,8 @@ resolvers ++= Seq(
   "Spray Repository" at "http://repo.spray.cc/"
 )
 
-// As of 2015-01-07, Hadoop 2.4.0 is the latest supported at Amazon
-// As of 2015-01-07, Spark 1.2.0 is the latest supported at Amazon
+// As of 2015-01-07, Hadoop 2.4.0 is the latest supported on AWS EMR
+// As of 2015-01-07, Spark 1.2.0 is the latest supported on AWS EMR
 libraryDependencies ++= Seq(
   "org.apache.hadoop" % "hadoop-mapreduce-client-core" % "2.4.0" % "provided",
   "org.apache.spark" % "spark-core_2.10" % "1.2.0" % "provided",
