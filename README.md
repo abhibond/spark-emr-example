@@ -68,3 +68,4 @@ For more examples check [here] (https://github.com/awslabs/emr-bootstrap-actions
 - [Submitting Spark Applications] (https://spark.apache.org/docs/1.1.1/submitting-applications.html)
 - [Spark Cluster Mode] (https://spark.apache.org/docs/1.1.1/cluster-overview.html)
 - [Spark Scala Docs] (http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.package)
+- [Spark on YARN] (https://spark.apache.org/docs/1.2.0/running-on-yarn.html)
