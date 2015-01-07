@@ -10,24 +10,59 @@ A simple tutorial for getting started with Spark on EMR. This can also be used a
 
 ## Building
 
+### Get started with Spark Dev Environment
 
-## TO-DO
+```
+git clone https://github.com/abhibond/spark-emr-example.git
+cd spark-emr-example
+sbt assembly
+```
 
-- Get started with Spark Dev Environment
-- Get started with Spark on EMR
-- Build a spark program
-- Run it locally
-- Run it on EMR
-- Intro to SparkSQL
-- Tutorial on using Parquet and Avro
-- Using Parquet with SparkSQL
+## Running
 
-## Resources
+### Run it locally
 
-- [Spark Scala Docs] (http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.package)
+
+```
+YOUR_SPARK_HOME/bin/spark-submit \
+--class "com.abhibon.spark.WordCount" \
+--master local[4] \
+/Path-To-Your-Fat-Jar Arguments
+```
+
+### Run it on EMR
+
+
+#### Launching EMR with Spark
+
+Always try to launch emr cluster with the latest Spark version. For more details check [here] (https://github.com/awslabs/emr-bootstrap-actions/tree/master/spark).
 
 ```
 aws emr create-cluster --name abond-spark --ami-version 3.3.1 --instance-type m3.xlarge --instance-count 1 \
 --ec2-attributes KeyName=abond-kp2 \
 --bootstrap-actions Path=s3://support.elasticmapreduce/spark/install-spark -v 1.2 -g
 ```
+
+#### Executing app on EMR
+
+We submit a job to Spark via spark-submit. This can be done by adding a step to the EMR using the [script-runner] (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-hadoop-script.html) interface.
+
+
+```
+aws emr add-steps --cluster-id <YOUR_CLUSTER_ID> --steps \
+Name=WordCount,Jar=s3://elasticmapreduce/libs/script-runner/script-runner.jar,Args=[/home/hadoop/spark/bin/spark-submit,--deploy-mode,cluster,--master,yarn-cluster,--class,com.abhibon.spark.WordCount,s3://abond-dev/spark-demo/bin/spark-emr-example.jar],ActionOnFailure=CONTINUE
+```
+
+
+## To-DO
+
+- Intro to SparkSQL
+- Tutorial on using Parquet and Avro
+- Using Parquet with SparkSQL
+
+## Resources
+
+- [Spark Programming Guide] (http://spark.apache.org/docs/latest/programming-guide.html)
+- [Submitting Spark Applications] (https://spark.apache.org/docs/1.1.1/submitting-applications.html)
+- [Spark Cluster Mode] (https://spark.apache.org/docs/1.1.1/cluster-overview.html)
+- [Spark Scala Docs] (http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.package)
