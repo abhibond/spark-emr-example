@@ -49,8 +49,8 @@ We submit a job to Spark via spark-submit. This can be done by adding a step to 
 
 
 ```
-aws emr add-steps --cluster-id <YOUR_CLUSTER_ID> --steps \
-Name=WordCount,Jar=s3://elasticmapreduce/libs/script-runner/script-runner.jar,Args=[/home/hadoop/spark/bin/spark-submit,--deploy-mode,cluster,--master,yarn-cluster,--class,com.abhibon.spark.WordCount,s3://abond-dev/spark-demo/bin/spark-emr-example.jar],ActionOnFailure=CONTINUE
+aws emr add-steps --cluster-id j-345VNW4E90THA --steps \
+Name=WordCount,Jar=s3://elasticmapreduce/libs/script-runner/script-runner.jar,Args=[/home/hadoop/spark/bin/spark-submit,--deploy-mode,cluster,--master,yarn-cluster,--class,com.abhibon.spark.WordCount,s3://abond-dev/spark-demo/bin/spark-emr-example.jar,s3://abond-dev/spark-demo/input/README.md,s3://abond-dev/spark-demo/output/],ActionOnFailure=CONTINUE
 ```
 
 For more examples check [here] (https://github.com/awslabs/emr-bootstrap-actions/blob/master/spark/examples/spark-submit-via-step.md)
