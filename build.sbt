@@ -7,7 +7,7 @@ name         := "spark-emr-example"
 
 version      := "0.1"
 
-scalaVersion := "2.10.4"
+scalaVersion := "2.11.4"
 
 scalacOptions := Seq("-deprecation", "-encoding", "utf8")
 
@@ -20,9 +20,12 @@ resolvers ++= Seq(
 // As of 2015-01-07, Spark 1.2.0 is the latest supported on AWS EMR
 libraryDependencies ++= Seq(
   "org.apache.hadoop" % "hadoop-mapreduce-client-core" % "2.4.0" % "provided",
-  "org.apache.spark" % "spark-core_2.10" % "1.2.0" % "provided",
+  "org.apache.spark" % "spark-core_2.11" % "1.2.0" % "provided",
   "com.google.guava" % "guava" % "11.0.1" % "test",
-  "org.specs2" % "specs2_2.10" % "2.2" % "test"
+  "org.specs2" % "specs2_2.10" % "latest.integration" % "test",
+  "com.twitter" % "bijection-core_2.10" % "latest.integration",
+  "com.amazonaws" % "aws-java-sdk" % "latest.integration",
+  "com.typesafe.scala-logging" %% "scala-logging" % "3.1.0"
 )
 
 // Required for sbt-assembly
